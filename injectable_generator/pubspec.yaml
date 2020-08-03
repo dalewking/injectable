@@ -14,8 +14,7 @@ dependencies:
   analyzer: ">=0.39.2 <0.40.0"
   collection: ^1.14.13
   injectable:
-    ^1.0.2
-#     path: ../injectable
+    path: ../injectable
 
 dev_dependencies:
   build_runner: ^1.0.0
