@@ -59,9 +59,9 @@ class InjectableConfigGenerator extends GeneratorForAnnotation<InjectableInit> {
   void _validateDuplicateDependencies(List<DependencyConfig> deps) {
     final validatedDeps = <DependencyConfig>[];
     for (var dep in deps) {
-      var registered = validatedDeps.where((elm) =>
-      elm.type.identity == dep.type.identity &&
-          elm.instanceName == dep.instanceName);
+      var registered = validatedDeps.where((elm) {
+        return elm.type == dep.type && elm.instanceName == dep.instanceName;
+      });
       if (registered.isEmpty) {
         validatedDeps.add(dep);
       } else {

@@ -1,6 +1,8 @@
 // holds extracted data from annotation & element
 // to be used later when generating the register function
 
+import 'package:collection/collection.dart';
+
 class DependencyConfig {
   ImportableType type;
   ImportableType typeImpl;
@@ -198,19 +200,18 @@ class ImportableType {
   }
 
   @override
-  String toString() {
-    return name;
-  }
+  String toString() => typeArguments == null || typeArguments.isEmpty ? name : "$name<${typeArguments.join(", ")}>";
 
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-          other is ImportableType &&
-              runtimeType == other.runtimeType &&
-              identity == other.identity;
+      other is ImportableType &&
+          runtimeType == other.runtimeType &&
+          identity == other.identity &&
+          ListEquality().equals(typeArguments, other.typeArguments);
 
   @override
-  int get hashCode => import.hashCode ^ name.hashCode;
+  int get hashCode => import.hashCode ^ name.hashCode ^ ListEquality().hash(typeArguments);
 
   Map<String, dynamic> toJson() =>
       {

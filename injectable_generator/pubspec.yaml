@@ -12,6 +12,7 @@ dependencies:
   path: ^1.6.0
   glob: ^1.1.7
   analyzer: ">=0.39.2 <0.40.0"
+  collection: ^1.14.13
   injectable:
     ^1.0.2
 #     path: ../injectable
